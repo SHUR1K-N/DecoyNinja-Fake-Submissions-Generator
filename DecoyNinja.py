@@ -1,5 +1,4 @@
 import random; import os; import time
-import msvcrt
 from colorama import init
 from termcolor import colored
 
