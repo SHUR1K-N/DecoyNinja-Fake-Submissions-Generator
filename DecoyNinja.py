@@ -50,6 +50,40 @@ def promptExp(exp):
     return (exp)
 
 
+def generateExps(Output, loopFlagExp, expNum):
+    while (loopFlagExp < exp):
+        Output += "Experiment (%d).pdf" % expNum
+        if (exp != 0):
+            with open(Output, '+w') as file:
+                randmFill = random.randint(500000, 1000000)
+                choices = ['å', '¼', 'Ü', '€', '´', 'W', '', '„', ' ', 'ñ', '”', 'Ó', 'l', 'D', '/', '‘', 'N', 'œ', '¦', 'l', 'ž', '£', ']', 'ß', '6', 'T', '1', 'Š', 'ï', '', 'õ', 'F', 'N', '‰', 'Î', '&', ';', '?', '#', '^', 'q', '%', ' ', '~', ':', 'k', '2', '±', '¼', 'l', ' ', 'X', 'r', '0', 'm', '*', '(', '@', '$', '?', '7', '.', 'j', '+', ',']
+                for i in range(0, randmFill):
+                    file.write(random.choice(choices))
+            file.close()
+            loopFlagExp += 1
+            expNum += 1
+            Output = OutputCopy
+        else:
+            break
+
+
+def generateAssigns(Output, loopFlagAssign, assignNum):
+    while (loopFlagAssign < assign):
+        Output += "Assignment (%d).pdf" % assignNum
+        if (assign != 0):
+            with open(Output, '+w') as file:
+                randmFill = random.randint(600000, 1000000)
+                choices = ['%', ' ', '[', '~', ':', 'k', '0', '2', '±', '¼', 'h', ' ', '-', 'Q', '_', '', 'u', '.', '3', 'L', 'f', '', 'å', 'j', 'Ü', '€', '´', ' ', 'i', 'ž', '£', ']', 'ß', '6', 'T', '1', 'Š', 'ï', ' ', 'õ', 'm', 'o', '‰', 'P', '', 'ñ', '”', 'Ó', 'l', 'ð', ' ', '‘', 'N', 'œ', '¦', 'Î', '&', ';', '?', '#', '^', 'q', '—']
+                for i in range(0, randmFill):
+                    file.write(random.choice(choices))
+            file.close()
+            loopFlagAssign += 1
+            assignNum += 1
+            Output = OutputCopy
+        else:
+            break
+
+
 ########## Main ##########
 
 assign = promptAssign(assign)
@@ -62,36 +96,8 @@ OutputCopy = Output
 print("\nWorking...", end='')
 
 start = time.time()
-while (loopFlagExp < exp):
-    Output += "Experiment (%d).pdf" % expNum
-    if (exp != 0):
-        with open(Output, '+w') as file:
-            randmFill = random.randint(500000, 1000000)
-            choices = ['å', '¼', 'Ü', '€', '´', 'W', '', '„', ' ', 'ñ', '”', 'Ó', 'l', 'D', '/', '‘', 'N', 'œ', '¦', 'l', 'ž', '£', ']', 'ß', '6', 'T', '1', 'Š', 'ï', '', 'õ', 'F', 'N', '‰', 'Î', '&', ';', '?', '#', '^', 'q', '%', ' ', '~', ':', 'k', '2', '±', '¼', 'l', ' ', 'X', 'r', '0', 'm', '*', '(', '@', '$', '?', '7', '.', 'j', '+', ',']
-            for i in range(0, randmFill):
-                file.write(random.choice(choices))
-        file.close()
-        loopFlagExp += 1
-        expNum += 1
-        Output = OutputCopy
-    else:
-        break
-
-while (loopFlagAssign < assign):
-    Output += "Assignment (%d).pdf" % assignNum
-    if (assign != 0):
-        with open(Output, '+w') as file:
-            randmFill = random.randint(600000, 1000000)
-            choices = ['%', ' ', '[', '~', ':', 'k', '0', '2', '±', '¼', 'h', ' ', '-', 'Q', '_', '', 'u', '.', '3', 'L', 'f', '', 'å', 'j', 'Ü', '€', '´', ' ', 'i', 'ž', '£', ']', 'ß', '6', 'T', '1', 'Š', 'ï', ' ', 'õ', 'm', 'o', '‰', 'P', '', 'ñ', '”', 'Ó', 'l', 'ð', ' ', '‘', 'N', 'œ', '¦', 'Î', '&', ';', '?', '#', '^', 'q', '—']
-            for i in range(0, randmFill):
-                file.write(random.choice(choices))
-        file.close()
-        loopFlagAssign += 1
-        assignNum += 1
-        Output = OutputCopy
-    else:
-        break
-
+generateExps(Output, loopFlagExp, expNum)
+generateAssigns(Output, loopFlagAssign, assignNum)
 completionTime = time.time() - start
 
 print("\n\nThe task completed successfully in %f seconds." % completionTime)
