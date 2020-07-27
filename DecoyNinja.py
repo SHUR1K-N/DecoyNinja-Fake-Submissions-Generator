@@ -1,6 +1,7 @@
 import random; import os; import time
 from colorama import init
 from termcolor import colored
+import threading
 
 loopFlagExp = 0; loopFlagAssign = 0
 expNum = 1; assignNum = 1; assign = 0; exp = 0
@@ -93,11 +94,19 @@ Output = str(input("Enter output folder (Default = current folder):") or "./")
 Output += "/"
 OutputCopy = Output
 
+threadExps = threading.Thread(target=generateExps, args=[Output, loopFlagExp, expNum])
+threadAssigns = threading.Thread(target=generateAssigns, args=[Output, loopFlagAssign, assignNum])
+
 print("\nWorking...", end='')
 
 start = time.time()
-generateExps(Output, loopFlagExp, expNum)
-generateAssigns(Output, loopFlagAssign, assignNum)
+
+threadExps.start()
+threadAssigns.start()
+
+threadExps.join()
+threadAssigns.join()
+
 completionTime = time.time() - start
 
 print("\n\nThe task completed successfully in %f seconds." % completionTime)
