@@ -7,10 +7,7 @@ loopFlagExp = 0; loopFlagAssign = 0
 expNum = 1; assignNum = 1; assign = 0; exp = 0
 decisionMade = False
 
-
-init()
-
-print(colored('''
+BANNER1 = colored('''
                     ▓█████▄ ▓█████  ▄████▄   ▒█████ ▓██   ██▓ ███▄    █  ██▓ ███▄    █  ▄▄▄██▀▀▀▄▄▄
                     ▒██▀ ██▌▓█   ▀ ▒██▀ ▀█  ▒██▒  ██▒▒██  ██▒ ██ ▀█   █ ▓██▒ ██ ▀█   █    ▒██  ▒████▄
                     ░██   █▌▒███   ▒▓█    ▄ ▒██░  ██▒ ▒██ ██░▓██  ▀█ ██▒▒██▒▓██  ▀█ ██▒   ░██  ▒██  ▀█▄
@@ -20,9 +17,14 @@ print(colored('''
                      ░ ▒  ▒  ░ ░  ░  ░  ▒     ░ ▒ ▒░ ▓██ ░▒░ ░ ░░   ░ ▒░ ▒ ░░ ░░   ░ ▒░ ▒ ░▒░    ▒   ▒▒ ░
                      ░ ░  ░    ░   ░        ░ ░ ░ ▒  ▒ ▒ ░░     ░   ░ ░  ▒ ░   ░   ░ ░  ░ ░ ░    ░   ▒
                        ░       ░  ░░ ░          ░ ░  ░ ░              ░  ░           ░  ░   ░        ░  ░
-                     ░             ░                 ░ ░                                                 ''', 'blue'))
-print(colored('''                                               DecoyNinja: The Decoy Generator''', 'red'))
-print(colored('''                                         -------------------------------------------''', 'blue'))
+                     ░             ░                 ░ ░                                                 ''', 'blue')
+BANNER2 = colored('''                                               DecoyNinja: The Decoy Generator''', 'red')
+BANNER3 = colored('''                                         -------------------------------------------''', 'blue')
+
+
+def printBanner():
+    init()
+    print(BANNER1), print(BANNER2), print(BANNER3)
 
 
 def promptAssign(assign):
@@ -87,29 +89,32 @@ def generateAssigns(Output, loopFlagAssign, assignNum):
 
 ########## Main ##########
 
-assign = promptAssign(assign)
-exp = promptExp(exp)
+if __name__ == "__main__":
 
-Output = str(input("Enter output folder (Default = current folder):") or "./")
-Output += "/"
-OutputCopy = Output
+    printBanner()
 
-threadExps = threading.Thread(target=generateExps, args=[Output, loopFlagExp, expNum])
-threadAssigns = threading.Thread(target=generateAssigns, args=[Output, loopFlagAssign, assignNum])
+    assign = promptAssign(assign)
+    exp = promptExp(exp)
 
-print("\nWorking...", end='')
+    Output = str(input("Enter output folder (Default = current folder):") or "./")
+    Output += "/"
+    OutputCopy = Output
 
-start = time.time()
+    threadExps = threading.Thread(target=generateExps, args=[Output, loopFlagExp, expNum])
+    threadAssigns = threading.Thread(target=generateAssigns, args=[Output, loopFlagAssign, assignNum])
 
-threadExps.start()
-threadAssigns.start()
+    print("\nWorking...", end='')
 
-threadExps.join()
-threadAssigns.join()
+    start = time.time()
 
-completionTime = time.time() - start
+    threadExps.start()
+    threadAssigns.start()
 
-print("\n\nThe task completed successfully in %f seconds." % completionTime)
-print("Press any key to exit. GG;WP.")
-secret = input()
-os.sys.exit()
+    threadExps.join()
+    threadAssigns.join()
+
+    completionTime = time.time() - start
+
+    print("\n\nThe task completed successfully in %f seconds." % completionTime)
+    print("Press any key to exit. GG;WP.")
+    input()
