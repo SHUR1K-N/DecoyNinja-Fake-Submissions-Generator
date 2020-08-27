@@ -27,42 +27,18 @@ def printBanner():
     print(BANNER1), print(BANNER2), print(BANNER3)
 
 
-def promptAssign(assign):
-    while (decisionMade is False):
-        assign = str(input("Enter the number of assignments to decoy (Default = 1): ") or "1")
-        try:
-            assign = int(assign)
-            break
-        except:
-            print("\nInvalid entry. Enter an integer. Try again.\n")
-            assign = 0
-            continue
-    return (assign)
-
-
-def promptExp(exp):
-    while (decisionMade is False):
-        exp = str(input("Enter the number of experiments to decoy (Default = 1): ") or "1")
-        try:
-            exp = int(exp)
-            break
-        except:
-            print("\nInvalid entry. Enter an integer. Try again.\n")
-            exp = 0
-            continue
-    return (exp)
-
-
 def generateExps(Output, loopFlagExp, expNum):
     while (loopFlagExp < exp):
-        Output += "Experiment (%d).pdf" % expNum
+        Output += f"Experiment {expNum}.pdf"
         if (exp != 0):
-            with open(Output, '+w') as file:
+            with open(Output, "w") as file:
                 randmFill = random.randint(500000, 1000000)
-                choices = ['å', '¼', 'Ü', '€', '´', 'W', '', '„', ' ', 'ñ', '”', 'Ó', 'l', 'D', '/', '‘', 'N', 'œ', '¦', 'l', 'ž', '£', ']', 'ß', '6', 'T', '1', 'Š', 'ï', '', 'õ', 'F', 'N', '‰', 'Î', '&', ';', '?', '#', '^', 'q', '%', ' ', '~', ':', 'k', '2', '±', '¼', 'l', ' ', 'X', 'r', '0', 'm', '*', '(', '@', '$', '?', '7', '.', 'j', '+', ',']
+                choices = ['å', '¼', 'Ü', '€', '´', 'W', '', '„', ' ', 'ñ', '”', 'Ó', 'l', 'D', '/', '‘', 'N', 'œ',
+                           '¦', 'l', 'ž', '£', ']', 'ß', '6', 'T', '1', 'Š', 'ï', '', 'õ', 'F', 'N', '‰', 'Î', '&', ';',
+                           '?', '#', '^', 'q', '%', ' ', '~', ':', 'k', '2', '±', '¼', 'l', ' ', 'X', 'r', '0', 'm', '*',
+                           '(', '@', '$', '?', '7', '.', 'j', '+', ',']
                 for i in range(0, randmFill):
                     file.write(random.choice(choices))
-            file.close()
             loopFlagExp += 1
             expNum += 1
             Output = OutputCopy
@@ -72,14 +48,16 @@ def generateExps(Output, loopFlagExp, expNum):
 
 def generateAssigns(Output, loopFlagAssign, assignNum):
     while (loopFlagAssign < assign):
-        Output += "Assignment (%d).pdf" % assignNum
+        Output += f"Assignment {assignNum}.pdf"
         if (assign != 0):
-            with open(Output, '+w') as file:
+            with open(Output, "w") as file:
                 randmFill = random.randint(600000, 1000000)
-                choices = ['%', ' ', '[', '~', ':', 'k', '0', '2', '±', '¼', 'h', ' ', '-', 'Q', '_', '', 'u', '.', '3', 'L', 'f', '', 'å', 'j', 'Ü', '€', '´', ' ', 'i', 'ž', '£', ']', 'ß', '6', 'T', '1', 'Š', 'ï', ' ', 'õ', 'm', 'o', '‰', 'P', '', 'ñ', '”', 'Ó', 'l', 'ð', ' ', '‘', 'N', 'œ', '¦', 'Î', '&', ';', '?', '#', '^', 'q', '—']
+                choices = ['%', ' ', '[', '~', ':', 'k', '0', '2', '±', '¼', 'h', ' ', '-', 'Q', '_', '', 'u', '.',
+                           '3', 'L', 'f', '', 'å', 'j', 'Ü', '€', '´', ' ', 'i', 'ž', '£', ']', 'ß', '6', 'T', '1',
+                           'Š', 'ï', ' ', 'õ', 'm', 'o', '‰', 'P', '', 'ñ', '”', 'Ó', 'l', 'ð', ' ', '‘', 'N', 'œ',
+                           '¦', 'Î', '&', ';', '?', '#', '^', 'q', '—']
                 for i in range(0, randmFill):
                     file.write(random.choice(choices))
-            file.close()
             loopFlagAssign += 1
             assignNum += 1
             Output = OutputCopy
@@ -93,8 +71,16 @@ if __name__ == "__main__":
 
     printBanner()
 
-    assign = promptAssign(assign)
-    exp = promptExp(exp)
+    while (decisionMade is False):
+        try:
+            assign = int(input("Enter the number of assignments to decoy (Default = 1): ") or 1)
+            exp = int(input("Enter the number of experiments to decoy (Default = 1): ") or 1)
+            decisionMade = True
+        except:
+            assign = 0
+            exp = 0
+            print("\nInvalid entry. Enter an integer. Try again.\n")
+            continue
 
     Output = str(input("Enter output folder (Default = current folder):") or "./")
     Output += "/"
@@ -115,6 +101,6 @@ if __name__ == "__main__":
 
     completionTime = time.time() - start
 
-    print("\n\nThe task completed successfully in %f seconds." % completionTime)
+    print(f"\n\nThe task completed successfully in {completionTime} seconds.")
     print("Press any key to exit. GG;WP.")
     input()
