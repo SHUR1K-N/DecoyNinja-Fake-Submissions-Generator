@@ -1,25 +1,25 @@
-import random; import os; import time
+import time; import os
 from colorama import init
 from termcolor import colored
-import threading
+import threading; import random; 
 
-loopFlagExp = 0; loopFlagAssign = 0
-expNum = 1; assignNum = 1; assign = 0; exp = 0
-decisionMade = False
+loopFlagAssign = 0; loopFlagExp = 0
+expNum = 1; assignNum = 1
 
 BANNER1 = colored('''
-                    ▓█████▄ ▓█████  ▄████▄   ▒█████ ▓██   ██▓ ███▄    █  ██▓ ███▄    █  ▄▄▄██▀▀▀▄▄▄
-                    ▒██▀ ██▌▓█   ▀ ▒██▀ ▀█  ▒██▒  ██▒▒██  ██▒ ██ ▀█   █ ▓██▒ ██ ▀█   █    ▒██  ▒████▄
-                    ░██   █▌▒███   ▒▓█    ▄ ▒██░  ██▒ ▒██ ██░▓██  ▀█ ██▒▒██▒▓██  ▀█ ██▒   ░██  ▒██  ▀█▄
-                    ░▓█▄   ▌▒▓█  ▄ ▒▓▓▄ ▄██▒▒██   ██░ ░ ▐██▓░▓██▒  ▐▌██▒░██░▓██▒  ▐▌██▒▓██▄██▓ ░██▄▄▄▄██
-                    ░▒████▓ ░▒████▒▒ ▓███▀ ░░ ████▓▒░ ░ ██▒▓░▒██░   ▓██░░██░▒██░   ▓██░ ▓███▒   ▓█   ▓██▒
-                     ▒▒▓  ▒ ░░ ▒░ ░░ ░▒ ▒  ░░ ▒░▒░▒░   ██▒▒▒ ░ ▒░   ▒ ▒ ░▓  ░ ▒░   ▒ ▒  ▒▓▒▒░   ▒▒   ▓▒█░
-                     ░ ▒  ▒  ░ ░  ░  ░  ▒     ░ ▒ ▒░ ▓██ ░▒░ ░ ░░   ░ ▒░ ▒ ░░ ░░   ░ ▒░ ▒ ░▒░    ▒   ▒▒ ░
-                     ░ ░  ░    ░   ░        ░ ░ ░ ▒  ▒ ▒ ░░     ░   ░ ░  ▒ ░   ░   ░ ░  ░ ░ ░    ░   ▒
-                       ░       ░  ░░ ░          ░ ░  ░ ░              ░  ░           ░  ░   ░        ░  ░
-                     ░             ░                 ░ ░                                                 ''', 'blue')
-BANNER2 = colored('''                                               DecoyNinja: The Decoy Generator''', 'red')
-BANNER3 = colored('''                                         -------------------------------------------''', 'blue')
+                ▓█████▄ ▓█████  ▄████▄   ▒█████ ▓██   ██▓ ███▄    █  ██▓ ███▄    █  ▄▄▄██▀▀▀▄▄▄
+                ▒██▀ ██▌▓█   ▀ ▒██▀ ▀█  ▒██▒  ██▒▒██  ██▒ ██ ▀█   █ ▓██▒ ██ ▀█   █    ▒██  ▒████▄
+                ░██   █▌▒███   ▒▓█    ▄ ▒██░  ██▒ ▒██ ██░▓██  ▀█ ██▒▒██▒▓██  ▀█ ██▒   ░██  ▒██  ▀█▄
+                ░▓█▄   ▌▒▓█  ▄ ▒▓▓▄ ▄██▒▒██   ██░ ░ ▐██▓░▓██▒  ▐▌██▒░██░▓██▒  ▐▌██▒▓██▄██▓ ░██▄▄▄▄██
+                ░▒████▓ ░▒████▒▒ ▓███▀ ░░ ████▓▒░ ░ ██▒▓░▒██░   ▓██░░██░▒██░   ▓██░ ▓███▒   ▓█   ▓██▒
+                 ▒▒▓  ▒ ░░ ▒░ ░░ ░▒ ▒  ░░ ▒░▒░▒░   ██▒▒▒ ░ ▒░   ▒ ▒ ░▓  ░ ▒░   ▒ ▒  ▒▓▒▒░   ▒▒   ▓▒█░
+                 ░ ▒  ▒  ░ ░  ░  ░  ▒     ░ ▒ ▒░ ▓██ ░▒░ ░ ░░   ░ ▒░ ▒ ░░ ░░   ░ ▒░ ▒ ░▒░    ▒   ▒▒ ░
+                 ░ ░  ░    ░   ░        ░ ░ ░ ▒  ▒ ▒ ░░     ░   ░ ░  ▒ ░   ░   ░ ░  ░ ░ ░    ░   ▒
+                   ░       ░  ░░ ░          ░ ░  ░ ░              ░  ░           ░  ░   ░        ░  ░
+                 ░             ░                 ░ ░
+                 ''', 'blue')
+BANNER2 = colored('''                                           DecoyNinja: The Decoy Generator''', 'red')
+BANNER3 = colored('''                                         -----------------------------------''', 'blue')
 
 
 def printBanner():
@@ -27,11 +27,11 @@ def printBanner():
     print(BANNER1), print(BANNER2), print(BANNER3)
 
 
-def generateExps(Output, loopFlagExp, expNum):
+def generateExps(outputPath, loopFlagExp, expNum):
     while (loopFlagExp < exp):
-        Output += f"Experiment {expNum}.pdf"
+        outputPath += f"Experiment {expNum}.pdf"
         if (exp != 0):
-            with open(Output, "w") as file:
+            with open(outputPath, "w") as file:
                 randmFill = random.randint(500000, 1000000)
                 choices = ['å', '¼', 'Ü', '€', '´', 'W', '', '„', ' ', 'ñ', '”', 'Ó', 'l', 'D', '/', '‘', 'N', 'œ',
                            '¦', 'l', 'ž', '£', ']', 'ß', '6', 'T', '1', 'Š', 'ï', '', 'õ', 'F', 'N', '‰', 'Î', '&', ';',
@@ -39,18 +39,17 @@ def generateExps(Output, loopFlagExp, expNum):
                            '(', '@', '$', '?', '7', '.', 'j', '+', ',']
                 for i in range(0, randmFill):
                     file.write(random.choice(choices))
-            loopFlagExp += 1
-            expNum += 1
-            Output = OutputCopy
+            loopFlagExp += 1; expNum += 1
+            outputPath = resetPath
         else:
             break
 
 
-def generateAssigns(Output, loopFlagAssign, assignNum):
+def generateAssigns(outputPath, loopFlagAssign, assignNum):
     while (loopFlagAssign < assign):
-        Output += f"Assignment {assignNum}.pdf"
+        outputPath += f"Assignment {assignNum}.pdf"
         if (assign != 0):
-            with open(Output, "w") as file:
+            with open(outputPath, "w") as file:
                 randmFill = random.randint(600000, 1000000)
                 choices = ['%', ' ', '[', '~', ':', 'k', '0', '2', '±', '¼', 'h', ' ', '-', 'Q', '_', '', 'u', '.',
                            '3', 'L', 'f', '', 'å', 'j', 'Ü', '€', '´', ' ', 'i', 'ž', '£', ']', 'ß', '6', 'T', '1',
@@ -58,11 +57,18 @@ def generateAssigns(Output, loopFlagAssign, assignNum):
                            '¦', 'Î', '&', ';', '?', '#', '^', 'q', '—']
                 for i in range(0, randmFill):
                     file.write(random.choice(choices))
-            loopFlagAssign += 1
-            assignNum += 1
-            Output = OutputCopy
+            loopFlagAssign += 1; assignNum += 1
+            outputPath = resetPath
         else:
             break
+
+
+def clrscr():
+    if os.name == 'posix':
+        _ = os.system('clear')
+    else:
+        _ = os.system('cls')
+    printBanner()
 
 
 ########## Main ##########
@@ -71,24 +77,32 @@ if __name__ == "__main__":
 
     printBanner()
 
-    while (decisionMade is False):
+    while (True):
         try:
             assign = int(input("Enter the number of assignments to decoy (Default = 1): ") or 1)
             exp = int(input("Enter the number of experiments to decoy (Default = 1): ") or 1)
-            decisionMade = True
+            break
         except:
-            assign = 0
-            exp = 0
-            print("\nInvalid entry. Enter an integer. Try again.\n")
+            clrscr()
+            print("Invalid entry. Enter an integer. Try again.\n")
             continue
 
-    Output = str(input("Enter output folder (Default = current folder):") or "./")
-    Output += "/"
-    OutputCopy = Output
+    while (True):
+            outputPath = str(input("Enter output folder (Default = current folder):") or "./")
+            outputPath += "/"
+            resetPath = outputPath
 
-    threadExps = threading.Thread(target=generateExps, args=[Output, loopFlagExp, expNum])
-    threadAssigns = threading.Thread(target=generateAssigns, args=[Output, loopFlagAssign, assignNum])
+            if (os.path.exists(outputPath) is True):
+                break
+            else:
+                clrscr()
+                print("Either file does not exist or invalid path entered. Try again.\n")
+                continue
 
+    threadExps = threading.Thread(target=generateExps, args=[outputPath, loopFlagExp, expNum])
+    threadAssigns = threading.Thread(target=generateAssigns, args=[outputPath, loopFlagAssign, assignNum])
+
+    clrscr()
     print("\nWorking...", end='')
 
     start = time.time()
@@ -101,6 +115,7 @@ if __name__ == "__main__":
 
     completionTime = time.time() - start
 
+    clrscr()
     print(f"\n\nThe task completed successfully in {completionTime} seconds.")
-    print("Press any key to exit. GG;WP.")
+    print("Press Enter to exit. GG;WP.")
     input()
