@@ -1,4 +1,5 @@
 # DecoyNinja: The Decoy Submission Generator
+
 ## Description & Usage
 A super dope tool that takes the following as input:
 
@@ -11,7 +12,6 @@ A super dope tool that takes the following as input:
 Multithreading was implemented in this program to generate the assignments and experiments simultaneously
 
 ## Dependencies to "pip install"
-
 - **colorama** (for colors)
 - **termcolor** (for colors)
 
