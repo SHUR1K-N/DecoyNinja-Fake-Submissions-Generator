@@ -1,7 +1,7 @@
 import time; import os
 from colorama import init
 from termcolor import colored
-import threading; import random; 
+import threading; import random
 
 loopFlagAssign = 0; loopFlagExp = 0
 expNum = 1; assignNum = 1
@@ -16,10 +16,9 @@ BANNER1 = colored('''
                  ░ ▒  ▒  ░ ░  ░  ░  ▒     ░ ▒ ▒░ ▓██ ░▒░ ░ ░░   ░ ▒░ ▒ ░░ ░░   ░ ▒░ ▒ ░▒░    ▒   ▒▒ ░
                  ░ ░  ░    ░   ░        ░ ░ ░ ▒  ▒ ▒ ░░     ░   ░ ░  ▒ ░   ░   ░ ░  ░ ░ ░    ░   ▒
                    ░       ░  ░░ ░          ░ ░  ░ ░              ░  ░           ░  ░   ░        ░  ░
-                 ░             ░                 ░ ░
-                 ''', 'blue')
-BANNER2 = colored('''                                           DecoyNinja: The Decoy Generator''', 'red')
-BANNER3 = colored('''                                         -----------------------------------''', 'blue')
+                 ░             ░                 ░ ░''', 'blue')
+BANNER2 = colored('''                                     DecoyNinja: The Decoy Submissions Generator''', 'red')
+BANNER3 = colored('''                                     -------------------------------------------''', 'blue')
 
 
 def printBanner():
@@ -71,7 +70,7 @@ def clrscr():
     printBanner()
 
 
-########## Main ##########
+############### Main ###############
 
 if __name__ == "__main__":
 
@@ -79,7 +78,7 @@ if __name__ == "__main__":
 
     while (True):
         try:
-            assign = int(input("Enter the number of assignments to decoy (Default = 1): ") or 1)
+            assign = int(input("\nEnter the number of assignments to decoy (Default = 1): ") or 1)
             exp = int(input("Enter the number of experiments to decoy (Default = 1): ") or 1)
             break
         except:
