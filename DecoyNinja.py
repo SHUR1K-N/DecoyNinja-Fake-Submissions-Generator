@@ -115,6 +115,6 @@ if __name__ == "__main__":
     completionTime = time.time() - start
 
     clrscr()
-    print(f"\n\nThe task completed successfully in {completionTime} seconds.")
+    print(f"\nThe task completed successfully in {completionTime} seconds.")
     print("Press Enter to exit. GG;WP.")
     input()
