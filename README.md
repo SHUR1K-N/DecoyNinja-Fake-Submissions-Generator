@@ -13,7 +13,7 @@ This project was created in Python, for the fellow comrades and homies.
 ## Optimization
 Multithreading was implemented in this program to generate the assignments and experiments simultaneously
 
-## Dependencies to "pip install"
+## Dependencies to PIP-Install
 - **colorama** (for colors)
 - **termcolor** (for colors)
 
