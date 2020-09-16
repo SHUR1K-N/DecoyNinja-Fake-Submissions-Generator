@@ -3,6 +3,8 @@ from colorama import init
 from termcolor import colored
 import threading; import random
 
+init()   # Initilizing colors
+
 loopFlagAssign = 0; loopFlagExp = 0
 expNum = 1; assignNum = 1
 
@@ -22,7 +24,6 @@ BANNER3 = colored('''                                     ----------------------
 
 
 def printBanner():
-    init()
     print(BANNER1), print(BANNER2), print(BANNER3)
 
 
@@ -76,45 +77,55 @@ if __name__ == "__main__":
 
     printBanner()
 
-    while (True):
-        try:
-            assign = int(input("\nEnter the number of assignments to decoy (Default = 1): ") or 1)
-            exp = int(input("Enter the number of experiments to decoy (Default = 1): ") or 1)
-            break
-        except:
-            clrscr()
-            print("Invalid entry. Enter an integer. Try again.\n")
-            continue
+    try:
 
-    while (True):
-            outputPath = str(input("Enter output folder (Default = current folder):") or "./")
-            outputPath += "/"
-            resetPath = outputPath
-
-            if (os.path.exists(outputPath) is True):
+        while (True):
+            try:
+                assign = int(input("\nEnter the number of assignments to decoy (Default = 1): ") or 1)
+                exp = int(input("Enter the number of experiments to decoy (Default = 1): ") or 1)
                 break
-            else:
+            except KeyboardInterrupt:
+                raise KeyboardInterrupt
+            except:
                 clrscr()
-                print("Either file does not exist or invalid path entered. Try again.\n")
+                print("Invalid entry. Enter an integer. Try again.\n")
                 continue
 
-    threadExps = threading.Thread(target=generateExps, args=[outputPath, loopFlagExp, expNum])
-    threadAssigns = threading.Thread(target=generateAssigns, args=[outputPath, loopFlagAssign, assignNum])
+        while (True):
+                outputPath = str(input("Enter output folder (Default = current folder):") or "./")
+                outputPath += "/"
+                resetPath = outputPath
 
-    clrscr()
-    print("\nWorking...", end='')
+                if (os.path.exists(outputPath) is True):
+                    break
+                else:
+                    clrscr()
+                    print("Either file does not exist or invalid path entered. Try again.\n")
+                    continue
 
-    start = time.time()
+        threadExps = threading.Thread(target=generateExps, args=[outputPath, loopFlagExp, expNum])
+        threadAssigns = threading.Thread(target=generateAssigns, args=[outputPath, loopFlagAssign, assignNum])
 
-    threadExps.start()
-    threadAssigns.start()
+        clrscr()
+        print("\nWorking...", end='')
 
-    threadExps.join()
-    threadAssigns.join()
+        start = time.time()
 
-    completionTime = time.time() - start
+        threadExps.start()
+        threadAssigns.start()
 
-    clrscr()
-    print(f"\nThe task completed successfully in {completionTime} seconds.")
-    print("Press Enter to exit. GG;WP.")
-    input()
+        threadExps.join()
+        threadAssigns.join()
+
+        completionTime = time.time() - start
+
+        clrscr()
+        print(f"\nThe task completed successfully in {completionTime} seconds.")
+        print("Press Enter to exit. GG;WP.")
+        input()
+
+    except KeyboardInterrupt:
+        clrscr()
+        print("\nCTRL ^C\n\nThrew a wrench in the works.")
+        print("Press Enter to exit.")
+        input()
