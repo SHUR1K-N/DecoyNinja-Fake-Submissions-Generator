@@ -3,7 +3,7 @@ import colorama
 from termcolor import colored
 import threading; import random
 
-colorama.init(
+colorama.init()
 
 loopFlagAssign = 0; loopFlagExp = 0
 expNum = 1; assignNum = 1
