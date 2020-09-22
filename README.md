@@ -11,7 +11,7 @@ A super dope tool that takes the following as input:
 <div align="center">
 <img src="https://github.com/SHUR1K-N/DecoyNinja/blob/master/Images/Example.png" >
 <p>Example Execution</p>
-</div> 
+</div>
 
 This project was created in Python, for the fellow comrades and homies.
 
