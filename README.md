@@ -1,4 +1,4 @@
-# DecoyNinja: The Decoy Submission Generator
+# DecoyNinja: Fake Submissions Generator
 
 ## Description & Usage
 A super dope tool that takes the following as input:
