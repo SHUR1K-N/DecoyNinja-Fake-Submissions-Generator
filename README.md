@@ -9,7 +9,7 @@ A super dope tool that takes the following as input:
 ...and then outputs .PDF files that are all unique in file size and combination of bytes in them; so no two files will ever be of the same size or byte combination, *ever*. These generated .PDFs will always show as corrupted/damaged in PDF viewers. If the generated .PDFs are opened using the Notepad (or any other text editor) by a slightly smarter person than the average lot, the content within each file shall be found to be consistent with that of a typical corrupted/damaged file's attributes; ideal for online submissions without any *actual* submission material.
 
 <div align="center">
-<img src="https://github.com/SHUR1K-N/DecoyNinja/blob/master/Images/Example.png" >
+<img src="https://github.com/SHUR1K-N/DecoyNinja-Fake-Submissions-Generator/blob/master/Images/Example.png" >
 <p>Example Execution</p>
 </div>
 
