@@ -31,14 +31,9 @@ def generateExps(outputPath, loopFlagExp, expNum):
     while (loopFlagExp < exp):
         outputPath += f"Experiment {expNum}.pdf"
         if (exp != 0):
-            with open(outputPath, "w") as file:
-                randmFill = random.randint(500000, 1000000)
-                choices = ['å', '¼', 'Ü', '€', '´', 'W', '', '„', ' ', 'ñ', '”', 'Ó', 'l', 'D', '/', '‘', 'N', 'œ',
-                           '¦', 'l', 'ž', '£', ']', 'ß', '6', 'T', '1', 'Š', 'ï', '', 'õ', 'F', 'N', '‰', 'Î', '&', ';',
-                           '?', '#', '^', 'q', '%', ' ', '~', ':', 'k', '2', '±', '¼', 'l', ' ', 'X', 'r', '0', 'm', '*',
-                           '(', '@', '$', '?', '7', '.', 'j', '+', ',']
-                for i in range(0, randmFill):
-                    file.write(random.choice(choices))
+            with open(outputPath, "wb") as file:
+                randomLength = random.randint(500000, 1000000)
+                file.write(os.urandom(randomLength))
             loopFlagExp += 1; expNum += 1
             outputPath = resetPath
         else:
@@ -49,14 +44,9 @@ def generateAssigns(outputPath, loopFlagAssign, assignNum):
     while (loopFlagAssign < assign):
         outputPath += f"Assignment {assignNum}.pdf"
         if (assign != 0):
-            with open(outputPath, "w") as file:
-                randmFill = random.randint(600000, 1000000)
-                choices = ['%', ' ', '[', '~', ':', 'k', '0', '2', '±', '¼', 'h', ' ', '-', 'Q', '_', '', 'u', '.',
-                           '3', 'L', 'f', '', 'å', 'j', 'Ü', '€', '´', ' ', 'i', 'ž', '£', ']', 'ß', '6', 'T', '1',
-                           'Š', 'ï', ' ', 'õ', 'm', 'o', '‰', 'P', '', 'ñ', '”', 'Ó', 'l', 'ð', ' ', '‘', 'N', 'œ',
-                           '¦', 'Î', '&', ';', '?', '#', '^', 'q', '—']
-                for i in range(0, randmFill):
-                    file.write(random.choice(choices))
+            with open(outputPath, "wb") as file:
+                randomLength = random.randint(600000, 1000000)
+                file.write(os.urandom(randomLength))
             loopFlagAssign += 1; assignNum += 1
             outputPath = resetPath
         else:
