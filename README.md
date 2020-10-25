@@ -16,7 +16,7 @@ A super dope tool that takes the following as input:
 This project was created in Python, for the fellow comrades and homies.
 
 ## Optimization
-Multithreading was implemented in this program to generate the assignments and experiments simultaneously
+Multithreading was implemented in this program to generate the assignments and experiments simultaneously.
 
 ## Dependencies to PIP-Install
 - **colorama** (for colors)
