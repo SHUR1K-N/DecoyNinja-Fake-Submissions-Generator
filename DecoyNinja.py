@@ -28,12 +28,48 @@ def printBanner():
     print(BANNER1), print(BANNER2), print(BANNER3), print(BANNER4)
 
 
+def header(file, randomLength):
+    with open(file, "w") as file:
+        file.write(f'''
+%PDF-1.{random.randrange(4, 7, 1)}
+%áéëÓ
+{random.randrange(2, 20, 1)} 0 obj
+<</Type /Catalog
+/Pages
+/Dests
+>>
+endobj
+{random.randrange(1, 20, 1)} 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources <</ExtGState <</G0 {random.randrange(2, 10, 1)} 0 R
+/G1 {random.randrange(2, 20, 1)} 0 R
+/G2 {random.randrange(2, 20, 1)} 0 R
+/G3 {random.randrange(2, 20, 1)} 0 R
+/G4 {random.randrange(2, 20, 1)} 0 R
+>>
+/Font <</F0 {random.randrange(2, 20, 1)} 0 R
+/F1 {random.randrange(2, 20, 1)} 0 R
+>>
+>>
+/MediaBox [{random.randrange(0, 500, 1)} {random.randrange(0, 500, 1)} {random.randrange(2, 1000, 1)} {random.randrange(2, 1000, 1)}]
+/Contents {random.randrange(2, 20, 1)} 0 R
+>>
+endobj
+{random.randrange(2, 20, 1)} 0 obj
+<</Filter /FlateDecode
+/Length {randomLength}
+>> stream
+''')
+
+
 def generateExps(outputPath, loopFlagExp, expNum):
     while (loopFlagExp < exp):
         outputPath += f"Experiment {expNum}.pdf"
         if (exp != 0):
-            with open(outputPath, "wb") as file:
-                randomLength = random.randint(500000, 1000000)
+            randomLength = random.randint(500000, 1000000)
+            header(outputPath, randomLength)
+            with open(outputPath, "ab") as file:
                 file.write(os.urandom(randomLength))
             loopFlagExp += 1; expNum += 1
             outputPath = resetPath
@@ -45,8 +81,9 @@ def generateAssigns(outputPath, loopFlagAssign, assignNum):
     while (loopFlagAssign < assign):
         outputPath += f"Assignment {assignNum}.pdf"
         if (assign != 0):
-            with open(outputPath, "wb") as file:
-                randomLength = random.randint(600000, 1000000)
+            randomLength = random.randint(600000, 1000000)
+            header(outputPath, randomLength)
+            with open(outputPath, "ab") as file:
                 file.write(os.urandom(randomLength))
             loopFlagAssign += 1; assignNum += 1
             outputPath = resetPath
