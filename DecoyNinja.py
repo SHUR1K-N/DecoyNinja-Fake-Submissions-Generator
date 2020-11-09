@@ -5,8 +5,7 @@ import colorama
 
 colorama.init()
 
-loopFlagAssign = 0; loopFlagExp = 0
-expNum = 1; assignNum = 1
+loopFlag = 0; decoyIter = 1
 
 BANNER1 = colored('''
   ▓█████▄ ▓█████  ▄████▄   ▒█████ ▓██   ██▓ ███▄    █  ██▓ ███▄    █  ▄▄▄██▀▀▀▄▄▄
@@ -19,9 +18,9 @@ BANNER1 = colored('''
    ░ ░  ░    ░   ░        ░ ░ ░ ▒  ▒ ▒ ░░     ░   ░ ░  ▒ ░   ░   ░ ░  ░ ░ ░    ░   ▒
      ░       ░  ░░ ░          ░ ░  ░ ░              ░  ░           ░  ░   ░        ░  ░
    ░             ░                 ░ ░''', 'blue')
-BANNER2 = colored('''                   -------------------------------------------------''', 'blue')
-BANNER3 = colored('''                   || DecoyNinja: The Decoy Submissions Generator ||''', 'red')
-BANNER4 = colored('''                   -------------------------------------------------''', 'blue')
+BANNER2 = colored('''                  ----------------------------------------------------''', 'blue')
+BANNER3 = colored('''                  || DecoyNinja: The Fake PDF Submissions Generator ||''', 'red')
+BANNER4 = colored('''                  ----------------------------------------------------''', 'blue')
 
 
 def printBanner():
@@ -63,29 +62,15 @@ endobj
 ''')
 
 
-def generateExps(outputPath, loopFlagExp, expNum):
-    while (loopFlagExp < exp):
-        outputPath += f"Experiment {expNum}.pdf"
-        if (exp != 0):
-            randomLength = random.randint(500000, 1000000)
-            header(outputPath, randomLength)
-            with open(outputPath, "ab") as file:
-                file.write(os.urandom(randomLength))
-            loopFlagExp += 1; expNum += 1
-            outputPath = resetPath
-        else:
-            break
-
-
-def generateAssigns(outputPath, loopFlagAssign, assignNum):
-    while (loopFlagAssign < assign):
-        outputPath += f"Assignment {assignNum}.pdf"
-        if (assign != 0):
+def generateDecoy(outputPath, loopFlag, decoyIter):
+    while (loopFlag < decoyNum):
+        outputPath += f"{decoyName} ({decoyIter}).pdf"
+        if (decoyIter != 0):
             randomLength = random.randint(600000, 1000000)
             header(outputPath, randomLength)
             with open(outputPath, "ab") as file:
                 file.write(os.urandom(randomLength))
-            loopFlagAssign += 1; assignNum += 1
+            loopFlag += 1; decoyIter += 1
             outputPath = resetPath
         else:
             break
@@ -109,8 +94,7 @@ if __name__ == "__main__":
 
         while (True):
             try:
-                assign = int(input("\nEnter the number of assignments to decoy (Default = 1): ") or 1)
-                exp = int(input("Enter the number of experiments to decoy (Default = 1): ") or 1)
+                decoyNum = int(input("\nEnter the number of PDFs to generate (Default = 1): ") or 1)
                 break
             except KeyboardInterrupt:
                 raise KeyboardInterrupt
@@ -118,6 +102,8 @@ if __name__ == "__main__":
                 clrscr()
                 print("Invalid entry. Enter an integer. Try again.\n")
                 continue
+
+        decoyName = input("Enter the name of PDF files (will automatically be numbered): ") or "Decoy"
 
         while (True):
                 outputPath = str(input("Enter output folder (Default = current folder):") or "./")
@@ -131,19 +117,21 @@ if __name__ == "__main__":
                     print("Either file does not exist or invalid path entered. Try again.\n")
                     continue
 
-        threadExps = threading.Thread(target=generateExps, args=[outputPath, loopFlagExp, expNum])
-        threadAssigns = threading.Thread(target=generateAssigns, args=[outputPath, loopFlagAssign, assignNum])
+        threadPool = []
+
+        for i in range(decoyNum):
+            threadPool.append(threading.Thread(target=generateDecoy, args=[outputPath, loopFlag, decoyIter]))
 
         clrscr()
         print("\nWorking...", end='')
 
         start = time.time()
 
-        threadExps.start()
-        threadAssigns.start()
+        for thread in threadPool:
+            thread.start()
 
-        threadExps.join()
-        threadAssigns.join()
+        for thread in threadPool:
+            thread.join()
 
         completionTime = time.time() - start
 
