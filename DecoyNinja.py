@@ -64,7 +64,10 @@ endobj
 
 def generateDecoy(outputPath, loopFlag, decoyIter):
     while (loopFlag < decoyNum):
-        outputPath += f"{decoyName} ({decoyIter}).pdf"
+        if (decoyIter > 1):
+            outputPath += f"{decoyName} ({decoyIter}).pdf"
+        elif (decoyIter == 1):
+            outputPath += f"{decoyName}.pdf"
         if (decoyIter != 0):
             randomLength = random.randint(600000, 1000000)
             header(outputPath, randomLength)
@@ -95,12 +98,14 @@ if __name__ == "__main__":
         while (True):
             try:
                 decoyNum = int(input("\nEnter the number of PDFs to generate (Default = 1): ") or 1)
+                if (decoyNum < 1):
+                    raise Exception
                 break
             except KeyboardInterrupt:
                 raise KeyboardInterrupt
             except:
                 clrscr()
-                print("Invalid entry. Enter an integer. Try again.\n")
+                print("\nInvalid entry. Enter a positive integer. Try again.\n")
                 continue
 
         decoyName = input("Enter the name of PDF files (will automatically be numbered): ") or "Decoy"
