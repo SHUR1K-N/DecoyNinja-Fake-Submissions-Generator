@@ -29,8 +29,7 @@ def printBanner():
 
 def header(file, randomLength):
     with open(file, "w") as file:
-        file.write(f'''
-%PDF-1.{random.randrange(4, 7, 1)}
+        file.write(f'''%PDF-1.{random.randrange(4, 7, 1)}
 %áéëÓ
 {random.randrange(2, 20, 1)} 0 obj
 <</Type /Catalog
