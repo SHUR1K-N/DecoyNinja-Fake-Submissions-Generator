@@ -64,10 +64,10 @@ endobj
 
 def generateDecoy(outputPath, loopFlag, decoyIter):
     while (loopFlag < decoyNum):
-        if (decoyIter > 1):
-            outputPath += f"{decoyName} ({decoyIter}).pdf"
-        elif (decoyIter == 1):
+        if (decoyNum == 1):
             outputPath += f"{decoyName}.pdf"
+        else:
+            outputPath += f"{decoyName} ({decoyIter}).pdf"
         if (decoyIter != 0):
             randomLength = random.randint(600000, 1000000)
             header(outputPath, randomLength)
@@ -140,8 +140,8 @@ if __name__ == "__main__":
 
         completionTime = time.time() - start
 
-        clrscr()
-        print(f"\nThe task completed successfully in {completionTime} seconds.")
+        # clrscr()
+        print(f" The task completed successfully in {completionTime} seconds.")
         print("Press Enter to exit. GG;WP.")
         input()
 
