@@ -12,7 +12,7 @@ Since the generated PDF files are all additionally equipped with genuine and *al
 
 <div align="center">
 <img src="https://raw.githubusercontent.com/SHUR1K-N/DecoyNinja-Fake-Submissions-Generator/master/Images/Notepad%20Example.png" >
-<p>Example Execution</p>
+<p>Generated PDF opened using Notepad</p>
 </div>
 
 This project was created in Python, for the fellow comrades and homies.
