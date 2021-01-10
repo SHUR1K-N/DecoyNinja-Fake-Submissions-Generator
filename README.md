@@ -26,4 +26,4 @@ Multithreading was implemented in this program to generate all PDF files concurr
 
 ------------
 
-My website: http://bit.do/SHUR1KN
+My website: https://TheComputerNoob.com
