@@ -1,7 +1,7 @@
 # DecoyNinja: Fake Submissions Generator
 
 ## Description & Usage
-A unique and super-dope tool that can batch-generate genuinely corrupted-seeming PDF files that are all uniquely random in file size & the bytes in them — no two files will ever be of the same size or byte combination, *ever*. These generated PDFs have genuine PDF file signatures for the more computer-smart testers, and will always show as corrupted or damaged in PDF viewers — ideal for online submissions without any *actual* submission material.
+A unique and super-dope tool that can batch-generate genuinely corrupted-seeming PDF files that are all uniquely random in file size & the bytes in them — no two files will ever be of the same size or byte combination, *ever*. These generated PDFs also have genuine PDF file signatures for the more computer-smart testers, and will always show as corrupted or damaged in PDF viewers — ideal for online submissions without any *actual* submission material.
 
 <div align="center">
 <img src="https://raw.githubusercontent.com/SHUR1K-N/DecoyNinja-Fake-Submissions-Generator/master/Images/Example.png" >
